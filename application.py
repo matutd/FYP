@@ -36,15 +36,15 @@ def savevehicle():
     if request.method=='GET':
         a=request.args.get('car', '')
         b=request.args.get('bike', '')
-		c==request.args.get('maxfreq', '')
-		d==request.args.get('sensor', '')
+        c=request.args.get('maxfreq', '')
+        d=request.args.get('sensor', '')
 
         data['Carinfo'].append({  
             'Timestamp': datetime.now().strftime("%H:%M:%S"),
             'Car': a,
             'Bike': b,
-			'Maximum Frequency': c,
-			'Sensor': d
+            'Maximum Frequency': c,
+            'Sensor': d
         })
         
         #save data json file by date
@@ -70,7 +70,7 @@ def savequeue():
         c=request.args.get('phasetimertl', '')
         d=request.args.get('queueltl', '')
         e=request.args.get('queuertl', '')
-		f=request.args.get('duration', '')
+        f=request.args.get('duration', '')
 
         data['Queueinfo'].append({  
             'Timestamp': datetime.now().strftime("%H:%M:%S"),
@@ -79,7 +79,7 @@ def savequeue():
             'Phase Time RTL': c,
             'Queue LTL': d,
             'Queue RTL': e,
-			'Remaining Duration': f
+            'Remaining Duration': f
         })
         
         #save data json file by date
