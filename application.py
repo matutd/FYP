@@ -15,28 +15,32 @@ data['Queueinfo'] = []
 @app.route("/")                            #Default page to show with nothing after the slash
 def home():                                #define the default page
     today = datetime.now().strftime("%Y-%m-%d")
-    total = 0
+    cars = 0
+    bikes = 0
     LTL = 0
     RTL = 0
     with open('{}.txt'.format(today)) as json_file:  
         datafile = json.load(json_file)
     for p in datafile['Carinfo']:
-        total += int(p['Car'])
+        cars += int(p['Car'])
+    for p in datafile['Carinfo']:
+        bikes += int(p['Bike'])
     for p in datafile['Queueinfo']:
         LTL = p['Queue LTL']
     for p in datafile['Queueinfo']:
         RTL = p['Queue RTL']
     
-    return 'Total Number of cars today: ' + str(total) + \
-           '<br/><br/>Left Traffic light current queue: ' + LTL+\
-           '<br/><br/>Right Traffic light current queue: ' + RTL
+    return 'Total Number of cars today: ' + str(cars) + \
+           '<br/><br/>Total Number of motorbikes today: ' + str(bikes) + \
+           '<br/><br/>Left Traffic light current queue: ' + str(LTL)+\
+           '<br/><br/>Right Traffic light current queue: ' + str(RTL)
 
 @app.route('/save-vehicle',methods=['POST', 'GET'])
 def savevehicle():
     if request.method=='GET':
         a=request.args.get('car', '')
         b=request.args.get('bike', '')
-        c=request.args.get('snesor', '')
+        c=request.args.get('sensor', '')
 
         data['Carinfo'].append({  
             'Timestamp': datetime.now().strftime("%H:%M:%S"),
