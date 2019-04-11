@@ -36,15 +36,13 @@ def savevehicle():
     if request.method=='GET':
         a=request.args.get('car', '')
         b=request.args.get('bike', '')
-        c=request.args.get('maxfreq', '')
-        d=request.args.get('sensor', '')
+        c=request.args.get('snesor', '')
 
         data['Carinfo'].append({  
             'Timestamp': datetime.now().strftime("%H:%M:%S"),
             'Car': a,
             'Bike': b,
-            'Maximum Frequency': c,
-            'Sensor': d
+            'Sensor': c
         })
         
         #save data json file by date
